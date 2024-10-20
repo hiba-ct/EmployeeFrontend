@@ -36,7 +36,7 @@ function EmployeeForm(props) {
     // Determine if we are editing or creating a new employee
     if (props.employee) {
       // Update the employee
-      fetch(`http://localhost:8000/employees/${employee.id}`, {
+      fetch(`https://employeeserver-y3px.onrender.com/employees/${employee.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -59,7 +59,7 @@ function EmployeeForm(props) {
     } else {
       // Add a new employee
       employee.createdAt = new Date().toISOString().slice(0, 10);
-      fetch("http://localhost:8000/employees", {
+      fetch("https://employeeserver-y3px.onrender.com/employees", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

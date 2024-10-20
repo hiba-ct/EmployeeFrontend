@@ -2,28 +2,30 @@ import React, { useEffect, useState } from 'react';
 
 const EmployeeList = (props) => {
   const [employees, setEmployees] = useState([]);
-
+ 
   // Fetch employee data
-  function fetchEmployees() {
-    fetch("https://employeeserver-y3px.onrender.com/")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Unexpected server response');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setEmployees(data);
-      })
-      .catch((error) => console.log("Error:", error));
-  }
+ 
+      function fetchEmployees() {
+        fetch("https://employeeserver-y3px.onrender.com/employees")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error('Unexpected server response');
+            }
+            return response.json();
+          })
+          .then((data) => {
+            setEmployees(data);
+          })
+          .catch((error) => console.log("Error:", error));
+      }
+      
 
   // Handle delete operation
   const handleDelete = (employeeId) => {
     // Confirm the deletion
     if (window.confirm("Are you sure you want to delete this employee?")) {
       // Send DELETE request to the API
-      fetch(`https://employeeserver-y3px.onrender.com/${employeeId}`, {
+      fetch(`https://employeeserver-y3px.onrender.com/employees/${employeeId}`, {
         method: "DELETE",
       })
       .then((response) => {
